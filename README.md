@@ -101,3 +101,7 @@ npm run icons:generate
 ```
 
 Źródło logo: ten sam plik co favicon frontendu (`klovy-chat-frontend/public/assets/logo_colour.png`).
+
+## Discord Rich Presence
+
+Status „Playing Klovy Chat” w Discordzie — instrukcja: [docs/DISCORD_PRESENCE.md](docs/DISCORD_PRESENCE.md)

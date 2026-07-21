@@ -60,5 +60,16 @@
         "silent": true
       }
     }
+  },
+  "plugins": {
+    "discordPresence": {
+      "enabled": true,
+      "clientId": "1529227238007111740",
+      "details": "Chatting with others",
+      "state": "app.klovy.chat",
+      "largeImageKey": "klovy_logo",
+      "largeImageText": "Klovy Chat",
+      "showElapsed": true
+    }
   }
 }
