@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Klovy Chat",
+  "bundle": {
+    "macOS": {
+      "minimumSystemVersion": "10.15",
+      "hardenedRuntime": true,
+      "entitlements": "./Entitlements.plist",
+      "infoPlist": "./Info.plist"
+    }
+  }
+}

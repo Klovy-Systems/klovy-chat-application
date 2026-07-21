@@ -1,0 +1,34 @@
+{
+  "name": "klovy-chat-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "dev:android": "tauri android dev",
+    "dev:ios": "tauri ios dev",
+    "build": "tauri build",
+    "build:windows": "tauri build",
+    "build:macos": "tauri build --target universal-apple-darwin",
+    "build:macos-appstore": "tauri build --bundles app --target universal-apple-darwin",
+    "build:linux": "tauri build",
+    "build:android": "tauri android build -- --aab",
+    "build:android:apk": "tauri android build -- --apk",
+    "build:ios": "tauri ios build -- --export-method app-store-connect",
+    "build:ios:open": "tauri ios build -- --open",
+    "setup:android": "tauri android init --ci && node scripts/patch-android-manifest.mjs",
+    "setup:ios": "tauri ios init --ci",
+    "setup:mobile": "node scripts/setup-mobile.mjs",
+    "check:android": "node scripts/check-android-env.mjs",
+    "setup:android-env": "powershell -ExecutionPolicy Bypass -File scripts/set-android-env.ps1",
+    "patch:android": "node scripts/patch-android-manifest.mjs",
+    "icons:generate": "tauri icon assets/logo_colour.png --ios-color #7C5CFF"
+  },
+  "dependencies": {
+    "@tauri-apps/plugin-opener": "^2"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

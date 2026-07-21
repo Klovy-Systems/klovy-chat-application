@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>ITSAppUsesNonExemptEncryption</key>
+  <false/>
+  <key>NSCameraUsageDescription</key>
+  <string>Klovy Chat potrzebuje dostępu do kamery, aby umożliwić rozmowy wideo i wysyłanie zdjęć.</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Klovy Chat potrzebuje dostępu do mikrofonu, aby umożliwić rozmowy głosowe i nagrywanie wiadomości.</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Klovy Chat potrzebuje dostępu do galerii, aby wysyłać zdjęcia i pliki.</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>Klovy Chat potrzebuje dostępu do galerii, aby zapisywać pobrane pliki.</string>
+</dict>
+</plist>
