@@ -1,107 +1,63 @@
-# Klovy Chat — multiplatform (Tauri)
+# Klovy Chat — desktop (Tauri)
 
-Oficjalna aplikacja natywna opakowująca [app.klovy.chat](https://app.klovy.chat).
+Oficjalna aplikacja **desktopowa** opakowująca [app.klovy.chat](https://app.klovy.chat).
 
-| Platforma | Sklep / dystrybucja |
-|-----------|---------------------|
-| Windows   | `.msi` / `.exe` (NSIS) |
-| macOS     | `.dmg` lub Mac App Store |
-| Linux     | `.deb`, `.AppImage`, `.rpm` |
-| Android   | Google Play (AAB) |
-| iOS       | App Store (IPA) |
+**Wspierane platformy:** Windows, macOS, Linux. Mobile (Android/iOS) nie jest częścią tego projektu.
+
+| Platforma | Dystrybucja |
+|-----------|-------------|
+| Windows   | `.msi` / `.exe` (NSIS), [Microsoft Store](docs/STORE_RELEASE.md#windows--microsoft-store) |
+| macOS     | `.dmg` lub [Mac App Store](docs/STORE_RELEASE.md#macos--app-store) |
+| Linux     | `.deb`, `.AppImage`, `.rpm` — [mapa dystrybucji](docs/STORE_RELEASE.md#linux--wiele-dystrybucji) |
 
 ## Wymagania
 
 - Node.js 18+
 - Rust (rustup)
-- **Windows:** MSVC Build Tools, WebView2
-- **macOS:** Xcode (+ CocoaPods dla iOS)
-- **Linux:** webkit2gtk 4.1
-- **Android:** Android Studio, `ANDROID_HOME`, `NDK_HOME`
-- **iOS:** macOS + Xcode (build tylko na macOS)
+- **Windows:** MSVC Build Tools, WebView2 Runtime (dev)
+- **macOS:** Xcode (build + opcjonalnie App Store)
+- **Linux:** `libwebkit2gtk-4.1-dev`, `libayatana-appindicator3-dev`, `librsvg2-dev`
 
-## Szybki start (desktop)
+## Szybki start
 
 ```bash
 npm install
-npm run dev          # Windows / macOS / Linux
-npm run build        # instalator dla bieżącego OS
-```
-
-## Mobile — pierwsza konfiguracja
-
-**Wymaga Android Studio** (SDK + NDK). Szczegóły: [docs/ANDROID_SETUP_WINDOWS.md](docs/ANDROID_SETUP_WINDOWS.md)
-
-```powershell
-# 1. Zainstaluj Android Studio + SDK/NDK (patrz dokumentacja)
-# 2. Ustaw zmienne środowiskowe:
-powershell -ExecutionPolicy Bypass -File scripts/set-android-env.ps1
-
-# 3. Restart terminala, potem:
-npm run check:android
-npm run setup:mobile
+npm run dev          # dev na bieżącym OS
+npm run build        # instalatory dla bieżącego OS
 ```
 
 ## Buildy per platforma
 
 ```bash
-npm run build:windows          # MSI/NSIS
-npm run build:macos            # DMG (universal)
-npm run build:macos-appstore   # .app dla App Store
-npm run build:linux            # deb/appimage/rpm
-npm run build:android          # AAB → Google Play
-npm run build:android:apk      # APK (testy)
-npm run build:ios              # IPA → App Store (macOS)
+npm run build:windows          # MSI + NSIS (dystrybucja bezpośrednia)
+npm run build:windows:store      # MSI/NSIS z offline WebView2 → Microsoft Store
+npm run build:macos            # DMG universal (Intel + Apple Silicon)
+npm run build:macos-appstore   # .app bundle → Mac App Store
+npm run build:linux            # deb + rpm + AppImage
 ```
 
-## Google Play
+Szczegóły sklepów, silent install, podpisywanie: **[docs/STORE_RELEASE.md](docs/STORE_RELEASE.md)**
 
-1. Konto [Google Play Console](https://play.google.com/console)
-2. `npm run setup:android` (jednorazowo)
-3. Podpis release: `src-tauri/gen/android/keystore.properties` — patrz [Tauri Android signing](https://v2.tauri.app/distribute/sign/android/)
-4. `npm run build:android` → plik `.aab` w `src-tauri/gen/android/app/build/outputs/bundle/`
-5. W Play Console uzupełnij:
-   - politykę prywatności: https://klovy.chat/docs/Privacy-Policy-Klovy-Chat.pdf
-   - kategorię: Komunikacja / Społecznościowe
-   - deklarację uprawnień (mikrofon, kamera, powiadomienia)
-   - formularz Data safety
+## Konfiguracja
 
-## App Store (iOS + macOS)
+| Plik | Opis |
+|------|------|
+| `src-tauri/tauri.conf.json` | Główna konfiguracja desktop |
+| `src-tauri/tauri.windows.conf.json` | Override Windows (merge przy buildzie) |
+| `src-tauri/tauri.macos.conf.json` | Override macOS |
+| `src-tauri/tauri.microsoftstore.conf.json` | WebView2 offline → Microsoft Store |
+| `src-tauri/capabilities/` | Uprawnienia Tauri (tylko `linux`, `macOS`, `windows`) |
 
-1. Konto [Apple Developer Program](https://developer.apple.com/programs/)
-2. App ID z Bundle ID: `com.klovy.chat`
-3. `npm run setup:ios` (na macOS)
-4. Ustaw `APPLE_DEVELOPMENT_TEAM` (Team ID) lub wpisz w Xcode
-5. Dla Mac App Store: provisioning profile + `Entitlements.plist` (już skonfigurowany)
-6. Build iOS: `npm run build:ios`
-7. Upload IPA: Xcode Organizer lub `xcrun altool`
-8. W App Store Connect:
-   - kategoria: Social Networking
-   - `ITSAppUsesNonExemptEncryption`: **No** (już w Info.plist)
-   - opisy uprawnień (mikrofon/kamera) — już w Info.ios.plist
+## CI
 
-Szczegółowy checklist: [docs/STORE_RELEASE.md](docs/STORE_RELEASE.md)
-
-## CI (GitHub Actions)
-
-Workflow `.github/workflows/build.yml` buduje artefakty dla wszystkich platform.
-
-Sekrety dla podpisywania iOS (opcjonalnie):
-
-- `APPLE_DEVELOPMENT_TEAM`
-- `APPLE_CERTIFICATE`, `APPLE_CERTIFICATE_PASSWORD`
-- `APPLE_API_ISSUER`, `APPLE_API_KEY`, `APPLE_API_KEY_ID`
+GitHub Actions (`.github/workflows/build.yml`) buduje artefakty desktop na Windows, macOS i Linux.
 
 ## Ikony
-
-Ikony aplikacji (Windows, macOS, Linux, Android, iOS) generowane z `assets/logo_colour.png`:
 
 ```bash
 npm run icons:generate
 ```
 
-Źródło logo: ten sam plik co favicon frontendu (`klovy-chat-frontend/public/assets/logo_colour.png`).
-
 ## Discord Rich Presence
 
-Status „Playing Klovy Chat” w Discordzie — instrukcja: [docs/DISCORD_PRESENCE.md](docs/DISCORD_PRESENCE.md)
+Konfiguracja w `src-tauri/tauri.conf.json` → `plugins.discordPresence`.

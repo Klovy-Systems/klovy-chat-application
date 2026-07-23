@@ -8,7 +8,7 @@
     "frontendDist": "https://app.klovy.chat"
   },
   "app": {
-    "withGlobalTauri": true,
+    "withGlobalTauri": false,
     "windows": [
       {
         "label": "main",
@@ -22,15 +22,16 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' https://app.klovy.chat https://api.klovy.chat https://cdn.klovy.chat blob: data: mediastream:; connect-src https://app.klovy.chat https://api.klovy.chat wss://api.klovy.chat https://cdn.klovy.chat blob: data:; media-src 'self' blob: mediastream: https://app.klovy.chat https://cdn.klovy.chat; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.klovy.chat; style-src 'self' 'unsafe-inline' https://app.klovy.chat; font-src 'self' data: https:; frame-src https://app.klovy.chat https://*.klovy.chat"
+      "csp": "default-src 'self' https://app.klovy.chat https://api.klovy.chat https://cdn.klovy.chat blob: data: mediastream:; connect-src https://app.klovy.chat https://api.klovy.chat wss://api.klovy.chat https://cdn.klovy.chat blob: data:; media-src 'self' blob: mediastream: https://app.klovy.chat https://cdn.klovy.chat; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.klovy.chat; style-src 'self' 'unsafe-inline' https://app.klovy.chat; font-src 'self' data: https:; frame-src https://app.klovy.chat https://*.klovy.chat",
+      "capabilities": ["default", "remote-app"]
     }
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["msi", "nsis", "deb", "rpm", "appimage", "dmg"],
     "category": "SocialNetworking",
     "shortDescription": "Komunikator Klovy Chat",
-    "longDescription": "Oficjalna aplikacja Klovy Chat — rozmowy, kanały, połączenia głosowe i więcej.",
+    "longDescription": "Oficjalna aplikacja desktopowa Klovy Chat — rozmowy, kanały, połączenia głosowe i więcej.",
     "copyright": "Copyright © Klovy",
     "publisher": "Klovy",
     "icon": [
@@ -40,19 +41,31 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "android": {
-      "minSdkVersion": 24,
-      "autoIncrementVersionCode": true
-    },
-    "iOS": {
-      "minimumSystemVersion": "14.0",
-      "infoPlist": "./Info.ios.plist"
-    },
     "macOS": {
       "minimumSystemVersion": "10.15",
       "hardenedRuntime": true,
       "entitlements": "./Entitlements.plist",
       "infoPlist": "./Info.plist"
+    },
+    "linux": {
+      "appimage": {
+        "bundleMediaFramework": true
+      },
+      "deb": {
+        "depends": [
+          "libwebkit2gtk-4.1-0",
+          "libgtk-3-0",
+          "libayatana-appindicator3-1"
+        ]
+      },
+      "rpm": {
+        "depends": [
+          "webkit2gtk4.1",
+          "gtk3",
+          "libappindicator-gtk3"
+        ],
+        "release": "1"
+      }
     },
     "windows": {
       "webviewInstallMode": {

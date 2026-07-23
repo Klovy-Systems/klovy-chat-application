@@ -1,8 +1,9 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "remote-app",
-  "description": "Allow Tauri runtime on the hosted web app",
+  "description": "Desktop: Tauri IPC on the hosted web app",
   "windows": ["main"],
+  "platforms": ["linux", "macOS", "windows"],
   "remote": {
     "urls": ["https://app.klovy.chat"]
   },

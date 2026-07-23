@@ -23,14 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Android signing (nigdy nie commituj)
-src-tauri/gen/android/keystore.properties
-*.jks
-*.keystore
-
 # Apple signing
 *.p12
-*.mobileprovision
 AuthKey_*.p8
 
 # Build artifacts

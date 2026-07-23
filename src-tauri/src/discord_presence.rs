@@ -26,7 +26,7 @@ impl Default for DiscordPresenceConfig {
         Self {
             enabled: true,
             client_id: String::new(),
-            details: "Rozmawia z innymi".to_string(),
+            details: "Chatting with others".to_string(),
             state: "app.klovy.chat".to_string(),
             large_image_key: "klovy_logo".to_string(),
             large_image_text: "Klovy Chat".to_string(),
