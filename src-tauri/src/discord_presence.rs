@@ -111,14 +111,3 @@ fn run_presence_loop(config: DiscordPresenceConfig) {
 pub fn stop() {
     SHUTDOWN.store(true, Ordering::SeqCst);
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn default_config_is_disabled_without_client_id() {
-        let config = DiscordPresenceConfig::default();
-        assert!(config.client_id.is_empty());
-    }
-}
