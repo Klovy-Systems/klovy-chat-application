@@ -22,7 +22,7 @@
       }
     ],
     "security": {
-      "csp": "default-src 'self' https://app.klovy.chat https://api.klovy.chat https://cdn.klovy.chat blob: data: mediastream:; connect-src https://app.klovy.chat https://api.klovy.chat wss://api.klovy.chat https://cdn.klovy.chat blob: data:; media-src 'self' blob: mediastream: https://app.klovy.chat https://cdn.klovy.chat; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.klovy.chat; style-src 'self' 'unsafe-inline' https://app.klovy.chat; font-src 'self' data: https:; frame-src https://app.klovy.chat https://*.klovy.chat",
+      "csp": "default-src 'self' https://app.klovy.chat https://api.klovy.chat https://cdn.klovy.chat blob: data: mediastream:; connect-src https://app.klovy.chat https://api.klovy.chat wss://api.klovy.chat https://cdn.klovy.chat https://*.livekit.cloud wss://*.livekit.cloud blob: data:; media-src 'self' blob: mediastream: https://app.klovy.chat https://cdn.klovy.chat; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.klovy.chat; style-src 'self' 'unsafe-inline' https://app.klovy.chat; font-src 'self' data: https:; frame-src https://app.klovy.chat https://*.klovy.chat",
       "capabilities": ["default", "remote-app"]
     }
   },
