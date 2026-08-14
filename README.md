@@ -61,3 +61,29 @@ npm run icons:generate
 ## Discord Rich Presence
 
 Konfiguracja w `src-tauri/tauri.conf.json` → `plugins.discordPresence`.
+
+## Badge nieprzeczytanych
+
+Liczba nieprzeczytanych pochodzi ze strony `app.klovy.chat` (tytuł `(N) Klovy Chat`). Desktop ustawia:
+
+- **macOS / Linux** — liczbę na ikonie Dock / Unity (`set_badge_count`)
+- **Windows** — czerwoną nakładkę z liczbą na ikonie paska zadań (`set_overlay_icon`)
+
+Komenda: `set_unread_badge` w `src-tauri/src/badge.rs`.
+
+## Auto-update
+
+Przy starcie (tylko instalator, nie `tauri dev`) aplikacja sprawdza GitHub Releases i pokazuje **Zainstaluj / Później**. `latest.json` i podpisy robi CI — nic nie dopisujesz ręcznie.
+
+Wydanie (z `main`):
+
+```powershell
+npm run release          # 1.0.0 → 1.0.1
+npm run release:minor    # 1.0.1 → 1.1.0
+```
+
+Albo GitHub → **Actions → Release → Run workflow**. CI podbija wersję we wszystkich plikach, taguje, buduje Windows/macOS/Linux, podpisuje i wrzuca `latest.json`.
+
+Microsoft Store ma puste `endpoints` (Store sam aktualizuje).
+
+Klucz podpisu żyje lokalnie (`%USERPROFILE%\.tauri\klovy-chat.key`) i jako secret `TAURI_SIGNING_PRIVATE_KEY`. Klucz **nie ma hasła** — secret `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` jest zbędny (GitHub nie przyjmuje pustego, więc go nie używamy). Release musi być publiczny.

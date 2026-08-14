@@ -12,7 +12,10 @@
     "build:macos": "tauri build --target universal-apple-darwin",
     "build:macos-appstore": "tauri build --bundles app --target universal-apple-darwin",
     "build:linux": "tauri build",
-    "icons:generate": "tauri icon assets/logo_colour.png"
+    "icons:generate": "tauri icon assets/logo_colour.png",
+    "release": "node scripts/dispatch-release.mjs patch",
+    "release:minor": "node scripts/dispatch-release.mjs minor",
+    "release:major": "node scripts/dispatch-release.mjs major"
   },
   "dependencies": {
     "@tauri-apps/plugin-opener": "^2"

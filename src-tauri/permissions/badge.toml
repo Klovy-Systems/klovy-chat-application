@@ -1,0 +1,4 @@
+[[permission]]
+identifier = "allow-set-unread-badge"
+description = "Allows the hosted web app to update the native unread badge"
+commands.allow = ["set_unread_badge"]
