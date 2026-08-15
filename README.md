@@ -1,14 +1,14 @@
-# Klovy Chat — desktop (Tauri)
+# Klovy Chat — Desktop
 
-Oficjalna aplikacja **desktopowa** opakowująca [app.klovy.chat](https://app.klovy.chat).
+Oficjalna aplikacja desktopowa opakowująca [app.klovy.chat](https://app.klovy.chat), zbudowana na [Tauri](https://tauri.app).
 
-**Wspierane platformy:** Windows, macOS, Linux. Mobile (Android/iOS) nie jest częścią tego projektu.
+Wspierane platformy: Windows, macOS, Linux. Mobile (Android/iOS) nie jest częścią tego projektu.
 
 | Platforma | Dystrybucja |
 |-----------|-------------|
-| Windows   | `.msi` / `.exe` (NSIS), [Microsoft Store](docs/STORE_RELEASE.md#windows--microsoft-store) |
-| macOS     | `.dmg` lub [Mac App Store](docs/STORE_RELEASE.md#macos--app-store) |
-| Linux     | `.deb`, `.AppImage`, `.rpm` — [mapa dystrybucji](docs/STORE_RELEASE.md#linux--wiele-dystrybucji) |
+| Windows | `.msi` / `.exe` (NSIS), [Microsoft Store](docs/STORE_RELEASE.md#windows--microsoft-store) |
+| macOS | `.dmg`, [Mac App Store](docs/STORE_RELEASE.md#macos--app-store) |
+| Linux | `.deb`, `.AppImage`, `.rpm` — [mapa dystrybucji](docs/STORE_RELEASE.md#linux--wiele-dystrybucji) |
 
 ## Wymagania
 
@@ -22,21 +22,21 @@ Oficjalna aplikacja **desktopowa** opakowująca [app.klovy.chat](https://app.klo
 
 ```bash
 npm install
-npm run dev          # dev na bieżącym OS
-npm run build        # instalatory dla bieżącego OS
+npm run dev      # dev na bieżącym OS
+npm run build    # instalatory dla bieżącego OS
 ```
 
 ## Buildy per platforma
 
 ```bash
 npm run build:windows          # MSI + NSIS (dystrybucja bezpośrednia)
-npm run build:windows:store      # MSI/NSIS z offline WebView2 → Microsoft Store
+npm run build:windows:store    # MSI/NSIS z offline WebView2 → Microsoft Store
 npm run build:macos            # DMG universal (Intel + Apple Silicon)
 npm run build:macos-appstore   # .app bundle → Mac App Store
 npm run build:linux            # deb + rpm + AppImage
 ```
 
-Szczegóły sklepów, silent install, podpisywanie: **[docs/STORE_RELEASE.md](docs/STORE_RELEASE.md)**
+Szczegóły sklepów, silent install, podpisywanie: [docs/STORE_RELEASE.md](docs/STORE_RELEASE.md)
 
 ## Konfiguracja
 
@@ -86,4 +86,4 @@ Albo GitHub → **Actions → Release → Run workflow**. CI podbija wersję we 
 
 Microsoft Store ma puste `endpoints` (Store sam aktualizuje).
 
-Klucz podpisu żyje lokalnie (`%USERPROFILE%\.tauri\xyz.key`) i jako secret `TAURI_SIGNING_PRIVATE_KEY`. Klucz **nie ma hasła** — secret `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` jest zbędny (GitHub nie przyjmuje pustego, więc go nie używamy). Release musi być publiczny.
+Klucz podpisu żyje lokalnie (`%USERPROFILE%\.tauri\xyz.key`) i jako secret `TAURI_SIGNING_PRIVATE_KEY`. Klucz nie ma hasła — secret `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` jest zbędny (GitHub nie przyjmuje pustego, więc go nie używamy). Release musi być publiczny.
