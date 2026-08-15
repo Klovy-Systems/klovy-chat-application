@@ -41,7 +41,7 @@ Tak, **można wystawić aplikację w Microsoft Store**. Oficjalna ścieżka Taur
 2. Nowy produkt → **EXE or MSI app** → zarezerwuj nazwę
 3. Instalator **offline** (WebView2 w paczce) — wymagane przez Store
 4. Instalacja **cicha** (silent install)
-5. **Publisher ≠ product name** — mamy `publisher: "Klovy"`, `productName: "Klovy Chat"` ✓
+5. **Publisher ≠ product name** — mamy `publisher: "Klovy Systems"`, `productName: "Klovy Chat"` ✓
 6. Instalator **podpisany certyfikatem** (code signing) — Store weryfikuje Win32 installery
 
 ### Build pod Microsoft Store

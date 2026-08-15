@@ -2,7 +2,7 @@
 name = "klovy-chat-desktop"
 version = "1.0.1"
 description = "Klovy Chat desktop app"
-authors = ["Klovy"]
+authors = ["Klovy Systems"]
 edition = "2021"
 
 [lib]
