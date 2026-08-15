@@ -86,4 +86,4 @@ Albo GitHub → **Actions → Release → Run workflow**. CI podbija wersję we 
 
 Microsoft Store ma puste `endpoints` (Store sam aktualizuje).
 
-Klucz podpisu żyje lokalnie (`%USERPROFILE%\.tauri\klovy-chat.key`) i jako secret `TAURI_SIGNING_PRIVATE_KEY`. Klucz **nie ma hasła** — secret `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` jest zbędny (GitHub nie przyjmuje pustego, więc go nie używamy). Release musi być publiczny.
+Klucz podpisu żyje lokalnie (`%USERPROFILE%\.tauri\xyz.key`) i jako secret `TAURI_SIGNING_PRIVATE_KEY`. Klucz **nie ma hasła** — secret `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` jest zbędny (GitHub nie przyjmuje pustego, więc go nie używamy). Release musi być publiczny.
